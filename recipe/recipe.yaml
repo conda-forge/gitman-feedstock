@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: gitman
-  version: "3.8"
+  version: "3.8.1"
   python_min: 3.10
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/gitman-${{ version }}.tar.gz
-  sha256: 529c3cc61ff707c7be5b4917e24ee83c9b506a4a9f85886e39c969cdd1c8c8da
+  sha256: 7f05c37042093c0d8e77bfc0e323007a92c4629f86497a42220e87530fcd3850
 
 build:
   number: 0
