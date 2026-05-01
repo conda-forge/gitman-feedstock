@@ -3,7 +3,7 @@ schema_version: 1
 context:
   name: gitman
   version: "3.8.1"
-  python_min: 3.10
+  build_number: 0
 
 package:
   name: ${{ name|lower }}
@@ -14,8 +14,8 @@ source:
   sha256: 7f05c37042093c0d8e77bfc0e323007a92c4629f86497a42220e87530fcd3850
 
 build:
-  number: 0
   noarch: python
+  number: ${{ build_number }}
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
@@ -24,14 +24,14 @@ build:
 
 requirements:
   host:
-    - python ${{ python_min }}.*,<3.15
+    - python ${{ python_min }}.*
     - poetry-core
     - pip
   run:
-    - python >=${{ python_min }},<4.0.0,<3.15
+    - python >=${{ python_min }}
     - datafiles >=2.3.1,<3.0.0
     - minilog >=2.3.1,<3.0.0
-    - universal-startfile >=0.2,<0.4
+    - universal-startfile >=0.2,<0.5
 
 tests:
   - python:
@@ -39,18 +39,16 @@ tests:
         - gitman
       pip_check: true
       python_version: ${{ python_min }}.*
-  - requirements:
-      run:
-        - pip
-    script:
+  - script:
       - gitman --help
       - git-deps --help
 
 about:
-  summary: A language-agnostic dependency manager using Git.
+  homepage: https://pypi.org/project/gitman
   license: MIT
   license_file: LICENSE.md
-  homepage: https://pypi.org/project/gitman
+  repository: https://github.com/jacebrowning/gitman
+  summary: A language-agnostic dependency manager using Git.
 
 extra:
   recipe-maintainers:
